@@ -12,9 +12,7 @@ export default function Home() {
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
           Portfolio Content Checkpoint
         </h1>
-        <p className="text-sm text-gray-600 dark:text-slate-300">
-          If you can see this text, rendering is working.
-        </p>
+       
       </section>
       <Hero />
       <About />
