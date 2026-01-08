@@ -61,9 +61,10 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'your-google-verification-code',
+    google: 'MSOLc_agxnSQ4oTFZWGcVU0LTlt3fQ1m103MPjY_KdI',
   },
 }
+
 
 
 
