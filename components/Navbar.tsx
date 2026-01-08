@@ -89,14 +89,14 @@ export default function Navbar() {
                 {theme === 'light' ? <FiMoon size={18} /> : <FiSun size={18} />}
               </button>
             )}
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsOpen(!isOpen)}
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
               className="md:hidden text-gray-700 hover:text-primary-600 dark:text-slate-200 dark:hover:text-primary-200 transition-colors"
-              aria-label="Toggle menu"
-            >
-              {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-            </button>
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+          </button>
           </div>
         </div>
 

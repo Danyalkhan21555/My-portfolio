@@ -85,14 +85,14 @@ export default function Skills() {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 max-w-5xl mx-auto">
             {skills.map((skill, index) => (
-              <div
-                key={skill.name}
+                <div
+                  key={skill.name}
                 className="card-surface rounded-2xl p-6 bg-white/80 dark:bg-slate-900/80 backdrop-blur text-center group hover:-translate-y-1.5 transition-all duration-300"
-                style={{
-                  animationDelay: `${index * 100}ms`,
-                }}
-              >
-                <div className="mb-4 flex justify-center">
+                  style={{
+                    animationDelay: `${index * 100}ms`,
+                  }}
+                >
+                  <div className="mb-4 flex justify-center">
                   <div className="w-16 h-16 rounded-xl bg-gray-100 dark:bg-slate-800 flex items-center justify-center shadow-inner group-hover:shadow-lg transition-shadow duration-300">
                     <Image
                       src={skill.logo}
@@ -104,18 +104,18 @@ export default function Skills() {
                   </div>
                 </div>
                 <h3 className="font-semibold text-gray-900 dark:text-white mb-3 text-sm md:text-base">
-                  {skill.name}
-                </h3>
+                    {skill.name}
+                  </h3>
                 <div className="w-full bg-gray-200 dark:bg-slate-800 rounded-full h-2 mb-2 overflow-hidden">
-                  <div
+                    <div
                     className="bg-gradient-to-r from-primary-500 to-primary-300 h-2 rounded-full transition-all duration-1000 ease-out"
-                    style={{
-                      width: isVisible ? `${skill.level}%` : '0%',
-                    }}
-                  ></div>
-                </div>
+                      style={{
+                        width: isVisible ? `${skill.level}%` : '0%',
+                      }}
+                    ></div>
+                  </div>
                 <p className="text-xs text-gray-600 dark:text-slate-400">{skill.level}%</p>
-              </div>
+                </div>
             ))}
           </div>
         </div>

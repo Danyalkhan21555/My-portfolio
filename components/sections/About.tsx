@@ -49,7 +49,7 @@ export default function About() {
             </p>
           </div>
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 lg:gap-16 items-start">
-            <div className="space-y-6">
+              <div className="space-y-6">
               <div className="card-surface rounded-2xl p-8 bg-white/70 dark:bg-slate-900/70 backdrop-blur">
                 <p className="text-lg text-gray-700 dark:text-slate-200 leading-relaxed">
                   I am a Flutter developer with strong UI/UX design skills. I build
@@ -71,30 +71,30 @@ export default function About() {
             </div>
             <div className="card-surface rounded-2xl p-8 bg-white/70 dark:bg-slate-900/70 backdrop-blur">
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                What I Do
-              </h3>
+                  What I Do
+                </h3>
               <ul className="space-y-4 text-gray-700 dark:text-slate-200">
-                <li className="flex items-start">
+                  <li className="flex items-start">
                   <span className="text-primary-600 dark:text-primary-200 mr-3 text-xl font-bold">✓</span>
-                  <span className="text-base">Mobile App Development with Flutter & Dart</span>
-                </li>
-                <li className="flex items-start">
+                    <span className="text-base">Mobile App Development with Flutter & Dart</span>
+                  </li>
+                  <li className="flex items-start">
                   <span className="text-primary-600 dark:text-primary-200 mr-3 text-xl font-bold">✓</span>
-                  <span className="text-base">UI/UX Design & Prototyping</span>
-                </li>
-                <li className="flex items-start">
+                    <span className="text-base">UI/UX Design & Prototyping</span>
+                  </li>
+                  <li className="flex items-start">
                   <span className="text-primary-600 dark:text-primary-200 mr-3 text-xl font-bold">✓</span>
-                  <span className="text-base">Firebase Integration & Backend Services</span>
-                </li>
-                <li className="flex items-start">
+                    <span className="text-base">Firebase Integration & Backend Services</span>
+                  </li>
+                  <li className="flex items-start">
                   <span className="text-primary-600 dark:text-primary-200 mr-3 text-xl font-bold">✓</span>
-                  <span className="text-base">REST API Integration & Development</span>
-                </li>
-                <li className="flex items-start">
+                    <span className="text-base">REST API Integration & Development</span>
+                  </li>
+                  <li className="flex items-start">
                   <span className="text-primary-600 dark:text-primary-200 mr-3 text-xl font-bold">✓</span>
-                  <span className="text-base">State Management & App Architecture</span>
-                </li>
-              </ul>
+                    <span className="text-base">State Management & App Architecture</span>
+                  </li>
+                </ul>
             </div>
           </div>
         </div>
