@@ -20,7 +20,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center section-padding pt-28 md:pt-32"
+      className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 md:pt-24 pb-20"
     >
       <div className="container-custom">
         <div className="text-center max-w-4xl mx-auto card-surface rounded-3xl p-10 md:p-14 bg-white/70 dark:bg-slate-900/70 backdrop-blur">
