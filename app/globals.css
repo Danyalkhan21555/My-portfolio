@@ -4,94 +4,130 @@
 
 @layer base {
   :root {
-    --bg: #f6f7fb;
-    --card: #ffffff;
-    --muted: #6b7280;
-    --text: #0f172a;
-    --primary: #2563eb;
-    --primary-strong: #1d4ed8;
-    --accent: #8b5cf6;
-    --border: #e5e7eb;
-    --gradient: radial-gradient(circle at 20% 20%, rgba(37, 99, 235, 0.08), transparent 35%), radial-gradient(circle at 80% 0%, rgba(139, 92, 246, 0.08), transparent 32%);
+    --bg: #020617;
+    --card: rgba(15, 23, 42, 0.7);
+    --muted: #94a3b8;
+    --text: #f8fafc;
+    --primary: #3b82f6;
+    --primary-strong: #2563eb;
+    --accent: #a855f7;
+    --border: rgba(255, 255, 255, 0.1);
+    --glow: rgba(59, 130, 246, 0.5);
+    --gradient: radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 100% 100%, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(34, 211, 238, 0.05) 0%, transparent 50%);
   }
 
+  /* Force Dark Theme as default for this futuristic look */
   .dark {
-    --bg: #0b1220;
-    --card: #0f172a;
+    --bg: #020617;
+    --card: rgba(15, 23, 42, 0.7);
     --muted: #94a3b8;
-    --text: #e2e8f0;
+    --text: #f8fafc;
     --primary: #60a5fa;
     --primary-strong: #3b82f6;
-    --accent: #a855f7;
-    --border: #1f2937;
-    --gradient: radial-gradient(circle at 15% 20%, rgba(96, 165, 250, 0.12), transparent 38%), radial-gradient(circle at 80% 0%, rgba(168, 85, 247, 0.12), transparent 34%);
+    --accent: #c084fc;
+    --border: rgba(255, 255, 255, 0.1);
   }
 
   html {
     scroll-behavior: smooth;
+    color-scheme: dark;
   }
 
   body {
-    @apply antialiased transition-colors duration-300 min-h-screen;
+    @apply antialiased min-h-screen relative overflow-x-hidden;
     background: var(--bg);
     color: var(--text);
-    background-image: var(--gradient);
-    background-attachment: fixed;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-bold;
+  ::selection {
+    background: rgba(59, 130, 246, 0.3);
+    color: #ffffff;
+  }
+
+  /* Grain Texture Overlay */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.03;
+    z-index: 50;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+
+  .premium-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+  }
+
+  .glow-circle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.15;
+    background: var(--primary);
+    pointer-events: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold tracking-tight;
+    background: linear-gradient(to bottom right, #ffffff 30%, #94a3b8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 }
 
 @layer utilities {
   .section-padding {
-    @apply py-20 px-4 sm:px-6 lg:px-8;
+    @apply py-32 px-6 sm:px-12 lg:px-24;
   }
 
   .container-custom {
-    @apply max-w-6xl lg:max-w-7xl mx-auto;
+    @apply max-w-7xl mx-auto;
   }
 
-  .section-title {
-    @apply text-4xl md:text-5xl font-bold text-center mb-4;
+  .glass-card {
+    @apply backdrop-blur-xl border border-white/10;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(15, 23, 42, 0.4) 100%);
   }
 
-  .section-subtitle {
-    @apply text-lg md:text-xl text-center max-w-2xl mx-auto mb-14;
-    color: var(--muted);
+  .glass-nav {
+    @apply backdrop-blur-lg border-b border-white/5;
+    background: rgba(2, 6, 23, 0.7);
   }
 
-  .card-surface {
-    background: var(--card);
-    border: 1px solid var(--border);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+  .shimmer-effect {
+    position: relative;
+    overflow: hidden;
   }
 
-  .glass {
-    backdrop-filter: blur(14px);
-    background: color-mix(in srgb, var(--card) 80%, transparent);
+  .shimmer-effect::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.05) 50%,
+        transparent 100%);
+    animation: shimmer 2.5s infinite;
   }
 
-  .fade-in-up {
-    animation: fadeInUp 0.6s ease-out forwards;
-    opacity: 0;
-  }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .stagger-animation {
-    animation: fadeInUp 0.6s ease-out forwards;
-    opacity: 0;
+  .text-glow {
+    text-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
   }
 }
-

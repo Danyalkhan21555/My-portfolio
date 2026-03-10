@@ -9,23 +9,30 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   keywords: [
-    'flutter',
-    'dart',
-    'mobile app developer',
-    'ui/ux designer',
-    'app development',
-    'flutter developer',
-    'mobile development',
-    'cross-platform',
-    'firebase',
-    'rest api',
+    'Flutter Developer',
+    'Mobile App Developer',
+    'Dart Expert',
+    'UI/UX Designer',
+    'Android Developer',
+    'iOS Developer',
+    'Next.js Developer',
+    'Pakistan Developer',
+    'Cross-platform Apps',
+    'Firebase Expert',
+    'Clean Architecture',
+    'Fluid Animations',
   ],
   authors: [
     {
       name: siteConfig.author.name,
+      url: siteConfig.url,
     },
   ],
   creator: siteConfig.author.name,
+  category: 'technology',
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -64,9 +71,3 @@ export const metadata: Metadata = {
     google: 'MSOLc_agxnSQ4oTFZWGcVU0LTlt3fQ1m103MPjY_KdI',
   },
 }
-
-
-
-
-
-

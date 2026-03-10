@@ -1,105 +1,98 @@
 'use client'
 
-import { useEffect, useState, useRef } from 'react'
+import { motion } from 'framer-motion'
+import { FiSmartphone, FiLayers, FiCloud, FiUser, FiActivity } from 'react-icons/fi'
+import TiltCard from '../TiltCard'
+import Section from '../Section'
+
+const journey = [
+  { year: '2021', title: 'The Genesis', desc: 'Started my journey with Java & Android Studio, building my first simple utility apps.' },
+  { year: '2022', title: 'Flutter Transition', desc: 'Discovered the power of cross-platform development and fell in love with Dart.' },
+  { year: '2023', title: 'UI Architect', desc: 'Began specializing in custom complex animations and high-fidelity design systems.' },
+  { year: '2024', title: 'Full-Stack Mastery', desc: 'Extended my skills into Next.js, Cloud architectures, and large-scale enterprise solutions.' },
+]
 
 export default function About() {
-  const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.1 }
-    )
-
-    const currentRef = sectionRef.current
-    if (currentRef) {
-      observer.observe(currentRef)
-    }
-
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef)
-      }
-    }
-  }, [])
-
   return (
-    <section
-      id="about"
-      ref={sectionRef}
-      className="section-padding"
-    >
+    <Section id="about">
       <div className="container-custom">
-        <div
-          className={`transition-all duration-700 ease-out ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-        >
-          <div className="text-center mb-12">
-            <h2 className="section-title text-gray-900 dark:text-white">
-              About Me
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 mb-24 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            className="space-y-8"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 glass-card rounded-full text-primary text-sm font-bold border-white/10 uppercase tracking-widest">
+              <FiUser className="animate-pulse" aria-hidden="true" /> My Story
+            </div>
+            <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter">
+              Crafting <span className="text-primary italic">Success</span> <br /> One Pixel at a Time.
             </h2>
-            <p className="section-subtitle">
-              Crafting elegant mobile experiences with Flutter, Dart, and thoughtful design.
+            <p className="text-xl text-muted leading-relaxed max-w-xl">
+              I am <span className="text-white font-bold">Danyal Khan</span>, a dedicated Full-Stack Mobile Engineer and UI/UX Designer.
+              My mission is to build digital products that are not only functional but visually cinematic.
             </p>
-          </div>
-          <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 lg:gap-16 items-start">
-              <div className="space-y-6">
-              <div className="card-surface rounded-2xl p-8 bg-white/70 dark:bg-slate-900/70 backdrop-blur">
-                <p className="text-lg text-gray-700 dark:text-slate-200 leading-relaxed">
-                  I am a Flutter developer with strong UI/UX design skills. I build
-                  clean and user-friendly mobile app interfaces that provide
-                  exceptional user experiences.
-                </p>
-                <p className="text-lg text-gray-700 dark:text-slate-200 leading-relaxed">
-                  My passion lies in creating beautiful, intuitive mobile
-                  applications that not only look great but also function seamlessly.
-                  I combine my technical expertise in Flutter and Dart with a keen
-                  eye for design to bring ideas to life.
-                </p>
-                <p className="text-lg text-gray-700 dark:text-slate-200 leading-relaxed">
-                  When I'm not coding, you can find me exploring new Flutter
-                  packages, practicing UI/UX design principles, or working on
-                  personal projects that challenge my skills.
-                </p>
+            <div className="flex flex-wrap gap-4">
+              <div className="px-6 py-3 glass-card rounded-2xl border-white/5 text-sm font-bold uppercase tracking-widest flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-primary animate-pulse" /> Available for Hire
+              </div>
+              <div className="px-6 py-3 glass-card rounded-2xl border-white/5 text-sm font-bold uppercase tracking-widest flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-accent animate-pulse" /> Remote Expert
               </div>
             </div>
-            <div className="card-surface rounded-2xl p-8 bg-white/70 dark:bg-slate-900/70 backdrop-blur">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                  What I Do
-                </h3>
-              <ul className="space-y-4 text-gray-700 dark:text-slate-200">
-                  <li className="flex items-start">
-                  <span className="text-primary-600 dark:text-primary-200 mr-3 text-xl font-bold">✓</span>
-                    <span className="text-base">Mobile App Development with Flutter & Dart</span>
-                  </li>
-                  <li className="flex items-start">
-                  <span className="text-primary-600 dark:text-primary-200 mr-3 text-xl font-bold">✓</span>
-                    <span className="text-base">UI/UX Design & Prototyping</span>
-                  </li>
-                  <li className="flex items-start">
-                  <span className="text-primary-600 dark:text-primary-200 mr-3 text-xl font-bold">✓</span>
-                    <span className="text-base">Firebase Integration & Backend Services</span>
-                  </li>
-                  <li className="flex items-start">
-                  <span className="text-primary-600 dark:text-primary-200 mr-3 text-xl font-bold">✓</span>
-                    <span className="text-base">REST API Integration & Development</span>
-                  </li>
-                  <li className="flex items-start">
-                  <span className="text-primary-600 dark:text-primary-200 mr-3 text-xl font-bold">✓</span>
-                    <span className="text-base">State Management & App Architecture</span>
-                  </li>
-                </ul>
+          </motion.div>
+
+          {/* Animated Journey Timeline */}
+          <div className="relative pl-8 md:pl-0">
+            <div className="absolute left-0 md:left-0 top-0 bottom-0 w-[1px] bg-gradient-to-b from-primary via-white/20 to-transparent" />
+
+            <div className="space-y-12">
+              {journey.map((item, index) => (
+                <motion.div
+                  key={item.year}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="relative pl-8 group"
+                >
+                  <div className="absolute left-[-11px] top-2 w-5 h-5 rounded-full bg-dark-900 border-2 border-primary group-hover:bg-primary transition-colors duration-500 z-10" />
+                  <div className="text-primary font-black text-xs uppercase tracking-[0.3em] mb-2">{item.year}</div>
+                  <h3 className="text-2xl font-black text-white mb-2">{item.title}</h3>
+                  <p className="text-muted text-sm leading-relaxed max-w-sm">{item.desc}</p>
+                </motion.div>
+              ))}
             </div>
           </div>
         </div>
+
+        {/* Services / Expertise */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <TiltCard>
+            <div className="glass-card rounded-[2.5rem] p-10 h-full border-white/5 hover:bg-white/5 transition-colors group relative overflow-hidden">
+              <FiSmartphone size={40} className="text-primary mb-6 group-hover:scale-110 transition-transform" />
+              <h3 className="text-2xl font-black mb-4">Mobile Apps</h3>
+              <p className="text-muted text-sm leading-relaxed">Cross-platform development with Flutter and Dart for iOS and Android.</p>
+              <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-primary/10 rounded-full blur-[80px]" />
+            </div>
+          </TiltCard>
+          <TiltCard>
+            <div className="glass-card rounded-[2.5rem] p-10 h-full border-white/5 hover:bg-white/5 transition-colors group relative overflow-hidden">
+              <FiLayers size={40} className="text-accent mb-6 group-hover:scale-110 transition-transform" />
+              <h3 className="text-2xl font-black mb-4">UI/UX Layout</h3>
+              <p className="text-muted text-sm leading-relaxed">Designing immersive pixel-perfect interfaces with high attention to detail.</p>
+              <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-accent/10 rounded-full blur-[80px]" />
+            </div>
+          </TiltCard>
+          <TiltCard>
+            <div className="glass-card rounded-[2.5rem] p-10 h-full border-white/5 hover:bg-white/5 transition-colors group relative overflow-hidden">
+              <FiCloud size={40} className="text-primary mb-6 group-hover:scale-110 transition-transform" />
+              <h3 className="text-2xl font-black mb-4">Cloud Systems</h3>
+              <p className="text-muted text-sm leading-relaxed">Scalable backends and API integration with Firebase and Node.js.</p>
+              <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-primary/10 rounded-full blur-[80px]" />
+            </div>
+          </TiltCard>
+        </div>
       </div>
-    </section>
+    </Section>
   )
 }
-

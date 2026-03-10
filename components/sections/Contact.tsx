@@ -1,204 +1,126 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
-import { FiMail, FiPhone, FiMapPin } from 'react-icons/fi'
+import { useState } from 'react'
+import { motion } from 'framer-motion'
+import { FiMail, FiPhone, FiMapPin, FiSend } from 'react-icons/fi'
+import Section from '../Section'
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  })
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' })
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    // Simulate form submission
     setTimeout(() => {
-      alert('Thank you for your message! I will get back to you soon.')
+      alert('Message Sent Successfully!')
       setFormData({ name: '', email: '', message: '' })
       setIsSubmitting(false)
-    }, 1000)
+    }, 1500)
   }
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    })
-  }
-
-  const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef<HTMLDivElement>(null)
-
-  const contactInfo = [
-    {
-      icon: FiMail,
-      label: 'Email',
-      value: 'md7428758@email.com',
-      href: 'mailto:md7428758@email.com',
-    },
-    {
-      icon: FiPhone,
-      label: 'Phone',
-      value: '+92 313 9411785',
-      href: 'tel:+923139411785',
-    },
-    {
-      icon: FiMapPin,
-      label: 'Location',
-      value: 'Available for Remote Work',
-      href: '#',
-    },
-  ]
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.1 }
-    )
-
-    const currentRef = sectionRef.current
-    if (currentRef) {
-      observer.observe(currentRef)
-    }
-
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef)
-      }
-    }
-  }, [])
 
   return (
-    <section
-      id="contact"
-      ref={sectionRef}
-      className="section-padding"
-    >
+    <Section id="contact">
       <div className="container-custom">
-        <div
-          className={`transition-all duration-700 ease-out ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-        >
-          <div className="text-center mb-14">
-            <h2 className="section-title text-gray-900 dark:text-white">
-              Get In Touch
-            </h2>
-            <p className="section-subtitle">
-              Let's collaborate on your next mobile experience.
-            </p>
-          </div>
-          <div className="max-w-4xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-12">
-              {/* Contact Information */}
-              <div className="card-surface rounded-2xl p-8 bg-white/80 dark:bg-slate-900/80 backdrop-blur">
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                  Let's Connect
-                </h3>
-                <p className="text-gray-700 dark:text-slate-200 mb-8 leading-relaxed">
-                  I'm always open to discussing new projects, creative ideas, or
-                  opportunities to be part of your visions. Feel free to reach out
-                  through any of the channels below.
-                </p>
-                <div className="space-y-4">
-                  {contactInfo.map(({ icon: Icon, label, value, href }) => (
-                    <a
-                      key={label}
-                      href={href}
-                      className="flex items-center space-x-4 text-gray-700 dark:text-slate-200 hover:text-primary-600 dark:hover:text-primary-200 transition-colors group"
-                    >
-                      <div className="w-12 h-12 bg-gray-100 dark:bg-slate-800 rounded-lg flex items-center justify-center group-hover:bg-primary-600 transition-colors">
-                        <Icon className="text-primary-600 group-hover:text-white transition-colors" size={20} />
-                      </div>
-                      <div>
-                        <p className="text-sm text-gray-500 dark:text-slate-400">{label}</p>
-                        <p className="font-medium">{value}</p>
-                      </div>
-                    </a>
-                  ))}
+        <div className="flex flex-col items-center mb-16 text-center">
+          <h2 className="text-4xl md:text-6xl font-black mb-4 uppercase tracking-tighter">
+            Start a <span className="text-primary italic">Project</span>
+          </h2>
+          <p className="text-muted text-lg max-w-2xl">
+            Have an idea? Let's build something extraordinary together.
+          </p>
+        </div>
+
+        <div className="max-w-5xl mx-auto glass-card rounded-[2.5rem] overflow-hidden border-white/5 shadow-2xl">
+          <div className="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-white/5">
+            {/* Info Side */}
+            <div className="md:w-2/5 p-8 md:p-12 bg-primary/5">
+              <h3 className="text-2xl font-black mb-8">Contact Information</h3>
+              <div className="space-y-8">
+                <div className="flex items-center gap-4 group cursor-pointer">
+                  <div className="p-4 glass-card rounded-2xl text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                    <FiMail size={24} />
+                  </div>
+                  <div>
+                    <div className="text-xs font-bold uppercase tracking-widest text-muted">Email</div>
+                    <div className="font-medium">md7428758@email.com</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 group cursor-pointer">
+                  <div className="p-4 glass-card rounded-2xl text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                    <FiPhone size={24} />
+                  </div>
+                  <div>
+                    <div className="text-xs font-bold uppercase tracking-widest text-muted">Phone</div>
+                    <div className="font-medium">+92 313 9411785</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 group cursor-pointer">
+                  <div className="p-4 glass-card rounded-2xl text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                    <FiMapPin size={24} />
+                  </div>
+                  <div>
+                    <div className="text-xs font-bold uppercase tracking-widest text-muted">Location</div>
+                    <div className="font-medium">Remote Worldwide</div>
+                  </div>
                 </div>
               </div>
+            </div>
 
-              {/* Contact Form */}
-              <div className="card-surface rounded-2xl p-8 bg-white/80 dark:bg-slate-900/80 backdrop-blur">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label
-                      htmlFor="name"
-                      className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2"
-                    >
-                      Name
-                    </label>
+            {/* Form Side */}
+            <div className="md:w-3/5 p-8 md:p-12">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold uppercase tracking-widest text-muted ml-1">Name</label>
                     <input
                       type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-primary-600 focus:border-transparent outline-none transition-all bg-white dark:bg-slate-800 text-gray-900 dark:text-white"
-                      placeholder="Your Name"
+                      className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-primary transition-colors hover:border-white/20"
+                      placeholder="Danyal Khan"
+                      value={formData.name}
+                      onChange={e => setFormData({ ...formData, name: e.target.value })}
                     />
                   </div>
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2"
-                    >
-                      Email
-                    </label>
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold uppercase tracking-widest text-muted ml-1">Email</label>
                     <input
                       type="email"
-                      id="email"
-                      name="email"
+                      required
+                      className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-primary transition-colors hover:border-white/20"
+                      placeholder="hello@example.com"
                       value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-primary-600 focus:border-transparent outline-none transition-all bg-white dark:bg-slate-800 text-gray-900 dark:text-white"
-                      placeholder="your.email@example.com"
+                      onChange={e => setFormData({ ...formData, email: e.target.value })}
                     />
                   </div>
-                  <div>
-                    <label
-                      htmlFor="message"
-                      className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2"
-                    >
-                      Message
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      rows={5}
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-primary-600 focus:border-transparent outline-none transition-all resize-none bg-white dark:bg-slate-800 text-gray-900 dark:text-white"
-                      placeholder="Your Message"
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full px-8 py-3.5 bg-primary-600 text-white rounded-lg font-semibold hover:bg-primary-700 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed transform hover:-translate-y-0.5"
-                  >
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
-                  </button>
-                </form>
-              </div>
+                </div>
+                <div className="space-y-2">
+                  <label className="text-xs font-bold uppercase tracking-widest text-muted ml-1">Message</label>
+                  <textarea
+                    required
+                    rows={4}
+                    className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-primary transition-colors resize-none hover:border-white/20"
+                    placeholder="Tell me about your vision..."
+                    value={formData.message}
+                    onChange={e => setFormData({ ...formData, message: e.target.value })}
+                  />
+                </div>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="group w-full py-4 bg-primary text-white rounded-2xl font-black uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-blue-600 transition-all shadow-lg shadow-primary/20 disabled:opacity-50 active:scale-[0.98]"
+                >
+                  {isSubmitting ? 'Transmitting...' : (
+                    <>
+                      Send Message <FiSend className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    </>
+                  )}
+                </button>
+              </form>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   )
 }
-
