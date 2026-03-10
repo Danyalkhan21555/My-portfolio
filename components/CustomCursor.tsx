@@ -21,15 +21,33 @@ export default function CustomCursor() {
     useEffect(() => {
         setMounted(true)
         const moveCursor = (e: MouseEvent) => {
-            mouseX.set(e.clientX)
-            mouseY.set(e.clientY)
-
-            const target = e.target as HTMLElement
-            setIsHovering(
-                target.closest('button') !== null ||
-                target.closest('a') !== null ||
-                target.style.cursor === 'pointer'
-            )
+            const { clientX, clientY, target } = e
+            
+            const targetElement = target as HTMLElement
+            const magneticElement = targetElement.closest('[data-magnetic]') as HTMLElement
+            
+            if (magneticElement) {
+                const rect = magneticElement.getBoundingClientRect()
+                const centerX = rect.left + rect.width / 2
+                const centerY = rect.top + rect.height / 2
+                
+                // Strength of magnetism
+                const dx = clientX - centerX
+                const dy = clientY - centerY
+                
+                mouseX.set(centerX + dx * 0.2)
+                mouseY.set(centerY + dy * 0.2)
+                setIsHovering(true)
+            } else {
+                mouseX.set(clientX)
+                mouseY.set(clientY)
+                
+                setIsHovering(
+                    targetElement.closest('button') !== null ||
+                    targetElement.closest('a') !== null ||
+                    targetElement.style.cursor === 'pointer'
+                )
+            }
         }
 
         window.addEventListener('mousemove', moveCursor)
@@ -48,9 +66,8 @@ export default function CustomCursor() {
                     y: mainY,
                     translateX: "-50%",
                     translateY: "-50%",
-                    scale: isHovering ? 2.5 : 1,
+                    scale: isHovering ? 0 : 1,
                 }}
-                transition={{ type: "spring", stiffness: 500, damping: 28 }}
             />
 
             {/* Outer Ring */}
@@ -61,8 +78,13 @@ export default function CustomCursor() {
                     y: ringY,
                     translateX: "-50%",
                     translateY: "-50%",
-                    scale: isHovering ? 1.5 : 1,
                 }}
+                animate={{
+                    scale: isHovering ? 2.5 : 1,
+                    backgroundColor: isHovering ? "rgba(59, 130, 246, 0.1)" : "rgba(59, 130, 246, 0)",
+                    borderColor: isHovering ? "rgba(59, 130, 246, 0.8)" : "rgba(59, 130, 246, 0.5)",
+                }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
             />
         </>
     )

@@ -64,7 +64,7 @@ export default function Projects() {
               className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-12 items-center group`}
             >
               {/* Image Container */}
-              <TiltCard className="w-full md:w-3/5">
+              <TiltCard className="w-full md:w-3/5" data-magnetic>
                 <div className="relative aspect-[16/10] overflow-hidden rounded-[2.5rem] glass-card border-white/5 group-hover:border-white/20 transition-all duration-700 shadow-2xl shimmer-effect">
                   <Image
                     src={project.image}

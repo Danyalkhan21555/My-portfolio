@@ -74,6 +74,7 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 * index + 0.5 }}
               href={item.href}
+              data-magnetic
               onClick={(e) => {
                 e.preventDefault()
                 handleNavClick(item.href)
@@ -90,6 +91,7 @@ export default function Navbar() {
           {mounted && (
             <button
               onClick={toggleTheme}
+              data-magnetic
               className="p-2 text-muted hover:text-primary transition-colors glass-card rounded-xl border-white/5"
               aria-label="Toggle theme"
             >

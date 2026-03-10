@@ -6,7 +6,8 @@ import LoadingScreen from './LoadingScreen'
 import CustomCursor from './CustomCursor'
 import PremiumBackground from './PremiumBackground'
 import SmoothScroll from './SmoothScroll'
-import StarsCanvas from './canvas/Stars'
+import dynamic from 'next/dynamic'
+const StarsCanvas = dynamic(() => import('./canvas/Stars'), { ssr: false })
 import Navbar from './Navbar'
 import Footer from './Footer'
 

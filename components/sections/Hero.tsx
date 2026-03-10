@@ -4,7 +4,8 @@ import { motion } from 'framer-motion'
 import { Suspense } from 'react'
 import { FiArrowRight, FiGithub, FiLinkedin } from 'react-icons/fi'
 import { HiSparkles } from 'react-icons/hi'
-import HeroCanvas from '../canvas/HeroCanvas'
+import dynamic from 'next/dynamic'
+const HeroCanvas = dynamic(() => import('../canvas/HeroCanvas'), { ssr: false })
 import Section from '../Section'
 
 export default function Hero() {
@@ -62,6 +63,7 @@ export default function Hero() {
           >
             <a
               href="#projects"
+              data-magnetic
               aria-label="View selected works and projects"
               className="group relative px-8 py-4 bg-primary text-white rounded-2xl font-bold flex items-center gap-2 transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(59,130,246,0.4)] uppercase tracking-widest text-sm"
             >
@@ -73,6 +75,7 @@ export default function Hero() {
               <motion.button
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
+                data-magnetic
                 className="p-4 glass-card rounded-2xl text-white hover:text-primary transition-colors border-white/5 active:bg-white/10"
                 aria-label="View developer GitHub profile"
                 onClick={() => window.open('https://github.com/Danyalkhan21555', '_blank')}
@@ -82,6 +85,7 @@ export default function Hero() {
               <motion.button
                 whileHover={{ scale: 1.1, rotate: -5 }}
                 whileTap={{ scale: 0.9 }}
+                data-magnetic
                 className="p-4 glass-card rounded-2xl text-white hover:text-primary transition-colors border-white/5 active:bg-white/10"
                 aria-label="Connect on LinkedIn"
                 onClick={() => window.open('https://linkedin.com', '_blank')}

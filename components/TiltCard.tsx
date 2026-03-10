@@ -1,14 +1,14 @@
 'use client'
 
 import React, { useRef } from 'react'
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import { motion, useMotionValue, useSpring, useTransform, HTMLMotionProps } from 'framer-motion'
 
-interface TiltCardProps {
+interface TiltCardProps extends HTMLMotionProps<"div"> {
     children: React.ReactNode
     className?: string
 }
 
-const TiltCard = ({ children, className }: TiltCardProps) => {
+const TiltCard = ({ children, className, ...props }: TiltCardProps) => {
     const x = useMotionValue(0)
     const y = useMotionValue(0)
 
@@ -45,6 +45,7 @@ const TiltCard = ({ children, className }: TiltCardProps) => {
                 transformStyle: "preserve-3d",
             }}
             className={className}
+            {...props}
         >
             <div
                 style={{

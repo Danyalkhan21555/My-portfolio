@@ -7,6 +7,17 @@ import { OrbitControls, Preload, MeshDistortMaterial, Float, Environment, Contac
 const Shape = () => {
     const meshRef = useRef<any>()
 
+    useFrame((state) => {
+        if (!meshRef.current) return
+        const time = state.clock.getElapsedTime()
+        meshRef.current.position.y = Math.sin(time) * 0.15
+        
+        // React to mouse
+        const { x, y } = state.mouse
+        meshRef.current.rotation.x = -y * 0.5
+        meshRef.current.rotation.y = x * 0.5
+    })
+
     return (
         <Float speed={4} rotationIntensity={1.5} floatIntensity={2}>
             <mesh ref={meshRef} position={[0, 0, 0]} scale={2.5}>
@@ -14,12 +25,12 @@ const Shape = () => {
                 <MeshDistortMaterial
                     color="#3b82f6"
                     attach="material"
-                    distort={0.5}
-                    speed={2.5}
-                    roughness={0.1}
-                    metalness={0.9}
+                    distort={0.4}
+                    speed={2}
+                    roughness={0.2}
+                    metalness={0.8}
                     emissive="#1e3a8a"
-                    emissiveIntensity={0.2}
+                    emissiveIntensity={0.5}
                 />
             </mesh>
         </Float>
