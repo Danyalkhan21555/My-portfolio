@@ -1,14 +1,18 @@
+import dynamic from 'next/dynamic'
 import Hero from '@/components/sections/Hero'
-import About from '@/components/sections/About'
-import Skills from '@/components/sections/Skills'
-import Projects from '@/components/sections/Projects'
-import Experience from '@/components/sections/Experience'
-import Testimonials from '@/components/sections/Testimonials'
-import Contact from '@/components/sections/Contact'
+
+// Lazy load below-the-fold sections for better LCP/TTI
+const About = dynamic(() => import('@/components/sections/About'))
+const Skills = dynamic(() => import('@/components/sections/Skills'))
+const Projects = dynamic(() => import('@/components/sections/Projects'))
+const Experience = dynamic(() => import('@/components/sections/Experience'))
+const Testimonials = dynamic(() => import('@/components/sections/Testimonials'))
+const Contact = dynamic(() => import('@/components/sections/Contact'))
 
 export default function Home() {
   return (
     <>
+      {/* Hero is eager-loaded for fast LCP */}
       <Hero />
       <About />
       <Skills />
